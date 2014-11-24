@@ -1,1 +1,0 @@
-tortilla;patata*-1*3*false#huevo*-1*4*false#sal*1*-1*true#asi;huevofrito;sal*1*-1*true#huevo*-1*1*false#nolose;
