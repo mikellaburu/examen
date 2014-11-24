@@ -5,10 +5,10 @@ public class Receta{
 	private String preparacion;
 	
 	//getters
-	public String getNombre(){
+	public String getNombreReceta(){
 		return this.nombreReceta;
 	}
-	public ArrayList <Ingrediente> getIngrediente(){
+	public ArrayList <Ingrediente> getIngredientes(){
 		return this.ingredientes;
 	}
 	public String getPreparacion(){
@@ -16,10 +16,10 @@ public class Receta{
 	}
 	
 	//setters
-	public void setNombre(String nombre){
+	public void setNombreReceta(String nombre){
 		this.nombreReceta=nombre;
 	}
-	public void setIngrediente(ArrayList <Ingrediente> lista){
+	public void setIngredientes(ArrayList <Ingrediente> lista){
 		this.ingredientes=lista;
 	}
 	public void setPreparacion(String descripcion){

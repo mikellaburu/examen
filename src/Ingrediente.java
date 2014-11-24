@@ -6,13 +6,13 @@ public class Ingrediente {
 	private boolean enGramos;
 
 	//getters
-	public String getNombre(){
+	public String getNombreIngrediente(){
 		return this.nombreIngrediente;
 	}
-	public int getUnidad(){
+	public int getCantidadUnidad(){
 		return this.cantidadUnidad;
 	}
-	public int getGramos(){
+	public int getCantidadGramos(){
 		return this.cantidadGramos;
 	}
 	public boolean getEnGramos(){
@@ -20,13 +20,13 @@ public class Ingrediente {
 	}
 
 	//setters
-	public void setNombre(String nombre){
+	public void setNombreIngrediente(String nombre){
 		this.nombreIngrediente=nombre;
 	}
-	public void setUnidad(int unidad){
+	public void setCantidadUnidad(int unidad){
 		this.cantidadUnidad=unidad;
 	}
-	public void setGramos(int gramos){
+	public void setCantidadGramos(int gramos){
 		this.cantidadGramos=gramos;
 	}
 	public void setEnGramos(boolean como){
