@@ -20,7 +20,7 @@ public class CenaAmigos {
 		//arraylist para guardar todas las recetas
 		ArrayList<Receta> listaRecetas = new ArrayList<Receta>();
 					
-		for (int i=0; i<cantRecetas; i++){
+		for (int i=0; i<cantRecetas; i++) {
 						
 			Receta r1 = new Receta();
 						
@@ -32,7 +32,7 @@ public class CenaAmigos {
 			//arraylist para guardar todas los ingredientes
 			ArrayList<Ingrediente> listaIngredientes = new ArrayList<Ingrediente>();
 						
-			for (int j=0; j<cantIngredientes; j++){		
+			for (int j=0; j<cantIngredientes; j++) {		
 				Ingrediente ing1 = new Ingrediente();
 							
 				System.out.println("Nombre del ingrediente "+(j+1)+":");
@@ -40,7 +40,7 @@ public class CenaAmigos {
 							
 				//variable para saber si son gramos o unidades
 				String como=" ";
-				do{
+				do {
 					System.out.println("Se mide en gramos(g) o unidades(u)?");
 					como = tecla.next();
 					switch (como) {
@@ -60,7 +60,7 @@ public class CenaAmigos {
 							System.out.println("Opcion incorrecta");
 							break;
 					} //fin del switch	
-				}while((!como.equalsIgnoreCase("g")) && (!como.equalsIgnoreCase("u")));
+				} while((!como.equalsIgnoreCase("g")) && (!como.equalsIgnoreCase("u")));
 				//añadir ingrediente al arraylist de ingredientes
 				listaIngredientes.add(ing1);				
 			} //final de bucle de ingredientes
@@ -76,50 +76,49 @@ public class CenaAmigos {
 
 		
 		// crear fichero
-		try{
+		try {
 
 			File archivo=new File("/home/zubiri/ProyectosJava/examen/src","listRecetas.txt");
 
-			if(archivo.createNewFile()){
+			if (archivo.createNewFile()) {
 				System.out.println("Se ha creado el archivo 'listRecetas.txt' correctamente");
-			}else{
+			} else {
 				System.out.println("No se ha podido crear el archivo 'listRecetas.txt'");
 			}
-		}catch(Exception e){
+		} catch (Exception e){
 			System.out.println("Error con el archivo");
 		}
 		
 		// escribir en el fichero
-		try{
+		try {
 			//crea el FileWriter, para escribir en el fichero
 			FileWriter fw=new FileWriter("./listRecetas.txt");
 
-			for (int i=0;i<listaRecetas.size();i++){
+			for (int i=0;i<listaRecetas.size();i++) {
 				fw.write(listaRecetas.get(i).getNombreReceta()+";");
 				ArrayList<Ingrediente> listaIng = listaRecetas.get(i).getIngredientes();	
 
-				for (int k=0;k<listaIng.size();k++){
+				for (int k=0;k<listaIng.size();k++) {
 					fw.write(listaIng.get(k).getNombreIngrediente()+"*");
 					fw.write(listaIng.get(k).getCantidadGramos()+"*");
 					fw.write(listaIng.get(k).getCantidadUnidad()+"*");
-					//fw.write(listaIng.get(k).getEnGramos());
 					if (k == listaIng.size()-1){
 						fw.write(listaIng.get(k).getEnGramos()+";");
-					}else{
+					} else {
 						fw.write(listaIng.get(k).getEnGramos()+"#");
 					}
 				}
 				fw.write(listaRecetas.get(i).getPreparacion()+"\n");
 			}
 			fw.close(); //cerrar objeto FileWriter 
-		}catch(Exception e){
+		} catch (Exception e) {
 			System.out.println("Error escribiendo archivo");
 		}
 				
 					System.out.println("Leer el contenido del fichero, identificar los objetos y atributos, y mostrarlos por pantalla\n");
 
 								//mostrar contenido del arraylist de recetas
-								for (int i=0; i<listaRecetas.size(); i++){
+								for (int i=0; i<listaRecetas.size(); i++) {
 									System.out.println("Receta "+(i+1)+":");
 									System.out.println(listaRecetas.get(i).getNombreReceta());
 									System.out.println(listaRecetas.get(i).getIngredientes());
