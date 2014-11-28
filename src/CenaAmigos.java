@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.FileReader;
+
 
 public class CenaAmigos {
 
@@ -75,26 +75,22 @@ public class CenaAmigos {
 		} // final de bucle de recetas
 
 		
-		// crear fichero
+		
 		try {
-
-			File archivo=new File("/home/zubiri/ProyectosJava/examen/src","listRecetas.txt");
+			// crear fichero
+			File archivo = new File("/home/zubiri/ProyectosJava/examen/src","listRecetas.txt");
 
 			if (archivo.createNewFile()) {
 				System.out.println("Se ha creado el archivo 'listRecetas.txt' correctamente");
 			} else {
-				System.out.println("No se ha podido crear el archivo 'listRecetas.txt'");
+				System.out.println("Ya existe el archivo 'listRecetas.txt'");
 			}
-		} catch (Exception e){
-			System.out.println("Error con el archivo");
-		}
 		
-		// escribir en el fichero
-		try {
 			//crea el FileWriter, para escribir en el fichero
-			FileWriter fw=new FileWriter("./listRecetas.txt");
+			FileWriter fw = new FileWriter("./listRecetas.txt");
 
 			for (int i=0;i<listaRecetas.size();i++) {
+				
 				fw.write(listaRecetas.get(i).getNombreReceta()+";");
 				ArrayList<Ingrediente> listaIng = listaRecetas.get(i).getIngredientes();	
 
@@ -111,66 +107,45 @@ public class CenaAmigos {
 				fw.write(listaRecetas.get(i).getPreparacion()+"\n");
 			}
 			fw.close(); //cerrar objeto FileWriter 
-		} catch (Exception e) {
-			System.out.println("Error escribiendo archivo");
-		}
+	
+			// Leer fichero y mostrar	
+			System.out.println("Leer el contenido del fichero, identificar los objetos y atributos, y mostrarlos por pantalla\n");
+	
+			Scanner leerFichero = new Scanner (archivo);
+
+			int cont = 1;
+			while (leerFichero.hasNextLine()) {
+				String fila = leerFichero.nextLine();//lerro bat irakurri fitxategitik eta string moduan gorde
+				String [] atributos = fila.split(";");//atributuak koma eta hutsuneaz bereiztu eta string motako array batean gorde 
 				
-					System.out.println("Leer el contenido del fichero, identificar los objetos y atributos, y mostrarlos por pantalla\n");
+				System.out.println("Receta "+cont);
+				System.out.println();
+				System.out.println("\tNombre: "+atributos[0]);
+				System.out.println();
 
-								//mostrar contenido del arraylist de recetas
-								for (int i=0; i<listaRecetas.size(); i++) {
-									System.out.println("Receta "+(i+1)+":");
-									System.out.println(listaRecetas.get(i).getNombreReceta());
-									System.out.println(listaRecetas.get(i).getIngredientes());
-									System.out.println(listaRecetas.get(i).getPreparacion());
-								}
+				String [] ingSeparados = atributos[1].split("#");
+				System.out.println("\tIngredientes:");
 
-		/* escribir en el fichero
-		try{
-
-			//crea el FileWriter, para escribir en el fichero
-			FileWriter fw=new FileWriter("./listRecetas.txt");
-
-			for (int i=0;i<listaRecetas.size();i++){
-
-				fw.write(listaRecetas.get(i).getNombreReceta()+";");
-				
-				ArrayList<Ingrediente> listaIng = listaRecetas.get(i).getIngredientes();
-				
-				for (int k=0;k<listaIng.size();k++){
-
-					fw.write(listaIng.get(k).getNombreIngrediente()+"*");
-					fw.write(listaIng.get(k).getCantidadGramos()+"*");
-					fw.write(listaIng.get(k).getCantidadUnidad()+"*");
-					fw.write(listaIng.get(k).getEnGramos()+"#");
+				for (int i=0; i<ingSeparados.length; i++) {
+					
+					String [] atribIng = ingSeparados[i].split("\\*");
+					
+					if (Boolean.parseBoolean(atribIng[3])) {
+						System.out.println("\t\t"+atribIng[0]+", "+atribIng[1]+" gramo(s)");
+					}else{
+						System.out.println("\t\t"+atribIng[0]+", "+atribIng[2]+" unida(es)");
+					}
 				}
-
-				fw.write(listaRecetas.get(i).getPreparacion()+";");
+				System.out.println();
+				System.out.println("\tPreparacion: "+atributos[2]);
+				System.out.println();
+				cont++;
 			}
-			fw.close(); //cerrar objeto FileWriter 
-			
-			FileReader fr=new FileReader("D:\\fichero1.txt");
-
-		            //Leemos el fichero y lo mostramos por pantalla
-
-		            int valor=fr.read();
-
-		            while(valor!=-1){
-
-		                System.out.print((char)valor);
-
-		                valor=fr.read();
-
-		            }
-
-		            //Cerramos el stream
-
-		            fr.close();
-
-		}catch(Exception e){
-
-			System.out.println("Error E/S: "+e);
-		} */
+			leerFichero.close();
+		} catch (Exception e) {
+				System.out.println("Error: "+e);
+		}
+		
 		tecla.close();
 
 	}
